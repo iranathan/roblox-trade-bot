@@ -3,6 +3,7 @@ import roblox, asyncio, json, re
 print('----Roblox trade bot----')
 print('   Made By: iranathan\n\n')
 
+
 async def best_price(e):
     price = 0
     for item in e:
@@ -13,11 +14,13 @@ async def best_price(e):
             price += resellers_json['data'][0]['price']
     return price
 
+
 def parse_items(e):
     str = ''
     for item in e:
         str += item['Name'] + ', '
     return str
+
 
 async def run():
     trades = await roblox.get_trades()
@@ -47,7 +50,6 @@ async def run():
                 await roblox.execute_trade(int(trade_identify['TradeSessionID']), 'accept')
             else:
                 await roblox.execute_trade(int(trade_identify['TradeSessionID']), 'decline')
-
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run())
